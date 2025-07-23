@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Code') {
+        stage('Clone Backend Repo') {
             steps {
-                git credentialsId: 'nazeerbasha949', url: 'https://github.com/nazeerbasha949/Internal-BE1.git', branch: 'main'
+                git branch: 'main', url: 'https://github.com/nazeerbasha949/Internal-BE1.git'
             }
         }
 
@@ -14,10 +14,10 @@ pipeline {
             }
         }
 
-        stage('Start Server') {
+        stage('Run Backend') {
             steps {
                 sh 'pm2 delete all || true'
-                sh 'pm2 start index.js --name internal-be'
+                sh 'pm2 start server.js '
             }
         }
     }
